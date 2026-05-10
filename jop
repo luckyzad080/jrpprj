@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinkjulieland - Welcome to my shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Mitr:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Mitr', 'sans-serif'],
+                        heading: ['Fredoka', 'sans-serif'],
+                    },
+                    colors: {
+                        theme: {
+                            bg: '#FAFAFC',
+                            card: '#FFFFFF',
+                            textDark: '#332E3A',
+                            textMuted: '#6B6670',
+                            noteBg: '#F3F4F6',
+                            btnBg: '#F6F3F9',
+                            btnHover: '#EBE5F0',
+                            accent: '#FFB6C1',
+                            purpleSoft: '#E8D1EE',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px rgba(0, 0, 0, 0.03)',
+                        'float': '0 10px 30px rgba(0, 0, 0, 0.06)',
+                        'glow': '0 0 15px rgba(253, 176, 192, 0.4)',
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        float: "float 4s ease-in-out infinite",
+                        floatSlow: "float 6s ease-in-out infinite",
+                        pulseSoft: "pulseSoft 3s ease-in-out infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                        float: {
+                            "0%, 100%": { transform: "translateY(0)" },
+                            "50%": { transform: "translateY(-8px)" },
+                        },
+                        pulseSoft: {
+                            "0%, 100%": { opacity: 1, transform: "scale(1)" },
+                            "50%": { opacity: 0.7, transform: "scale(0.95)" },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #FAFAFC;
+            color: #332E3A;
+            -webkit-tap-highlight-color: transparent;
+        }
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+        .modal-open {
+            overflow: hidden;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+        
+        /* Glass card effect for sections */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* Modal animations */
+        .modal-overlay-enter { opacity: 0; }
+        .modal-overlay-enter-active { opacity: 1; transition: opacity 300ms ease-out; }
+        .modal-overlay-exit { opacity: 1; }
+        .modal-overlay-exit-active { opacity: 0; transition: opacity 300ms ease-in; }
+        
+        .modal-content-enter { transform: translateY(100%); }
+        .modal-content-enter-active { transform: translateY(0); transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1); }
+        .modal-content-exit { transform: translateY(0); }
+        .modal-content-exit-active { transform: translateY(100%); transition: transform 250ms ease-in; }
+    </style>
+</head>
+<body class="antialiased font-sans flex justify-center selection:bg-pink-200 selection:text-pink-900 min-h-screen">
+
+    <!-- Main Container (Mobile Layout) -->
+    <main class="w-full max-w-[480px] min-h-screen relative pb-10 bg-white shadow-2xl sm:my-8 sm:rounded-[40px] overflow-hidden border border-gray-100 flex flex-col">
+        
+        <!-- === AMBIENT BACKGROUND EFFECTS (Animated Blobs) === -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+            <!-- Top Pink Blob -->
+            <div class="absolute top-[-5%] left-[-10%] w-[300px] h-[300px] bg-pink-100 rounded-full mix-blend-multiply filter blur-[80px] opacity-70 animate-blob"></div>
+            <!-- Middle Purple Blob -->
+            <div class="absolute top-[30%] right-[-10%] w-[350px] h-[350px] bg-purple-100 rounded-full mix-blend-multiply filter blur-[90px] opacity-60 animate-blob animation-delay-2000"></div>
+            <!-- Bottom Blue Blob -->
+            <div class="absolute bottom-[10%] left-[5%] w-[250px] h-[250px] bg-blue-50 rounded-full mix-blend-multiply filter blur-[70px] opacity-70 animate-blob animation-delay-4000"></div>
+            
+            <!-- Floating Sparkle Background Details -->
+            <svg class="absolute top-[15%] right-[10%] w-4 h-4 animate-float opacity-50" viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 13 9 18 12C13 14 12 22 12 22C12 22 11 14 6 12C11 9 12 2 12 2Z" fill="#FDB0C0"/></svg>
+            <svg class="absolute top-[45%] left-[8%] w-3 h-3 animate-floatSlow opacity-40 animation-delay-2000" viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 13 9 18 12C13 14 12 22 12 22C12 22 11 14 6 12C11 9 12 2 12 2Z" fill="#B19CD9"/></svg>
+            <svg class="absolute bottom-[25%] right-[12%] w-5 h-5 animate-float opacity-40 animation-delay-4000" viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 13 9 18 12C13 14 12 22 12 22C12 22 11 14 6 12C11 9 12 2 12 2Z" fill="#AEC6CF"/></svg>
+        </div>
+
+        <!-- === CONTENT (z-10 to stay above background) === -->
+        <div class="relative z-10 flex-grow">
+            <!-- Header Section -->
+            <header class="pt-14 pb-6 px-6 text-center relative">
+                <!-- Floating code brackets behind title -->
+                <div class="absolute top-10 left-6 text-pink-200 opacity-40 text-3xl font-bold font-heading animate-float pointer-events-none">&lt;/&gt;</div>
+                <div class="absolute top-16 right-8 text-purple-200 opacity-40 text-2xl font-bold font-heading animate-floatSlow pointer-events-none">{ }</div>
+
+                <h1 class="font-heading text-4xl font-bold text-theme-textDark mb-1 tracking-wide relative inline-block">
+                    JNS.CONNECT
+                    <svg class="absolute -top-3 -right-5 w-6 h-6 animate-pulseSoft" viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 13 9 18 12C13 14 12 22 12 22C12 22 11 14 6 12C11 9 12 2 12 2Z" fill="#FDB0C0"/></svg>
+                </h1>
+                <h2 class="font-heading text-xl text-theme-textMuted font-medium mb-6">ศูนย์รวมมือถือ ผ่อนง่าย ได้ของชัวร์</h2>
+                <p class="text-[15px] leading-relaxed text-theme-textDark">
+                    รับผ่อน iPhone, iPad และสมาร์ทโฟนทุกรุ่น <br>
+                    ผ่อนไปใช้ไป / วางดาวน์รับเครื่อง / ผ่อนออม <br>
+                    <span class="inline-block mt-3 font-medium bg-gradient-to-r from-pink-50 to-purple-50 border border-purple-100 px-5 py-1.5 rounded-full text-sm shadow-sm text-purple-800">นักเรียน นักศึกษา ผ่อนได้ ใช้แค่บัตร ปชช.</span>
+                </p>
+            </header>
+
+            <!-- Services Section -->
+            <section class="px-5 mb-8 relative">
+                <div class="glass-card p-6 rounded-[28px] shadow-soft border border-white/60 relative overflow-hidden">
+                    <!-- Cat Paw Decor (Top Right) -->
+                    <svg class="absolute -top-4 -right-4 w-20 h-20 opacity-[0.05] transform rotate-12 pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 60 Q50 90 70 60 Q80 40 50 45 Q20 40 30 60 Z" fill="#2E2A36"/>
+                        <circle cx="28" cy="30" r="10" fill="#2E2A36"/>
+                        <circle cx="50" cy="18" r="12" fill="#2E2A36"/>
+                        <circle cx="72" cy="30" r="10" fill="#2E2A36"/>
+                    </svg>
+
+                    <h3 class="font-semibold text-lg mb-4 flex items-center gap-2 relative z-10">
+                        <i class="fa-solid fa-mobile-screen-button text-theme-textMuted text-sm bg-gray-100 p-2 rounded-full"></i> บริการของร้าน JNS.CONNECT
+                    </h3>
+                    
+                    <ul class="space-y-3 text-[15px] text-theme-textDark ml-1">
+                        <li class="flex items-center gap-3">
+                            <div class="w-7 h-7 bg-pink-50 rounded-full flex justify-center items-center flex-shrink-0">
+                                <i class="fa-brands fa-apple text-pink-400 text-[13px]"></i>
+                            </div>
+                            <span>วางดาวน์รับเครื่อง (อนุมัติไว รับของทันที)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-7 h-7 bg-purple-50 rounded-full flex justify-center items-center flex-shrink-0">
+                                <i class="fa-solid fa-piggy-bank text-purple-400 text-[12px]"></i>
+                            </div>
+                            <span>ผ่อนออม (ไม่มีดอกเบี้ย ไม่ต้องเช็คเครดิต)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-7 h-7 bg-blue-50 rounded-full flex justify-center items-center flex-shrink-0">
+                                <i class="fa-solid fa-arrows-rotate text-blue-400 text-[12px]"></i>
+                            </div>
+                            <span>รับเทิร์นเครื่องเก่า ให้ราคาสูง ตีราคาฟรี</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-7 h-7 bg-gray-50 rounded-full flex justify-center items-center flex-shrink-0">
+                                <i class="fa-solid fa-shield-halved text-gray-400 text-[11px]"></i>
+                            </div>
+                            <span>สินค้ามือ 1 ประกันศูนย์แท้ 100% ทุกเครื่อง</span>
+                        </li>
+                    </ul>
+
+                    <!-- Button to trigger Contact Modal -->
+                    <button onclick="openModal()" class="w-full mt-6 bg-theme-textDark text-white py-3.5 rounded-2xl font-medium text-[15px] flex justify-between items-center px-6 shadow-md hover:bg-[#25212A] active:scale-[0.98] transition-all relative overflow-hidden group border border-transparent hover:border-gray-700">
+                        <div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform"></div>
+                        <span class="relative z-10 flex items-center gap-1.5"><i class="fa-solid fa-star text-yellow-400 drop-shadow-sm"></i>ช่องทางการติดต่อ</span>
+                        <i class="fa-solid fa-chevron-right text-sm opacity-70 relative z-10 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                    <p class="text-center text-xs text-theme-textMuted mt-3">
+                        กดปุ่มด้านบนเพื่อติดต่อสอบถาม
+                    </p>
+                </div>
+            </section>
+
+            <!-- Installment Details Section -->
+            <section class="px-5 mb-8 space-y-4">
+                <div class="glass-card p-6 rounded-[28px] shadow-soft border border-white/60 relative">
+                    <!-- Peeking Cat Decor Top Right -->
+                    <div class="absolute -top-7 right-4 w-16 h-16 z-0">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-sm hover:translate-y-[-5px] transition-transform duration-300 cursor-pointer">
+                            <path d="M20 50 L30 20 L50 40 L70 20 L80 50" fill="#2E2A36"/>
+                            <path d="M20 50 Q50 30 80 50 L80 100 L20 100 Z" fill="#2E2A36"/>
+                            <ellipse cx="40" cy="65" rx="5" ry="6" fill="#E8D1EE"/>
+                            <ellipse cx="60" cy="65" rx="5" ry="6" fill="#E8D1EE"/>
+                            <circle cx="41" cy="63" r="1.5" fill="#FFFFFF"/>
+                            <circle cx="61" cy="63" r="1.5" fill="#FFFFFF"/>
+                            <ellipse cx="30" cy="75" rx="5" ry="3" fill="#FFB6C1" opacity="0.8"/>
+                            <ellipse cx="70" cy="75" rx="5" ry="3" fill="#FFB6C1" opacity="0.8"/>
+                            <path d="M47 75 Q50 78 53 75" stroke="#E8D1EE" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        </svg>
+                    </div>
+
+                    <h3 class="font-semibold text-lg mb-3 flex items-center gap-2 relative z-10">
+                        <i class="fa-solid fa-circle-check text-theme-textMuted bg-gray-100 p-2 rounded-full text-xs"></i> ข้อดีของการผ่อนกับเรา
+                    </h3>
+                    <div class="bg-gradient-to-r from-theme-btnBg to-purple-50 border border-purple-50/50 rounded-2xl p-4 mb-4 relative z-10">
+                        <div class="font-semibold text-lg text-theme-textDark">📱 ใช้แค่บัตรประชาชนใบเดียว!</div>
+                        <div class="text-[13px] mt-1 text-theme-textMuted">ไม่ต้องมีสลิปเงินเดือน ไม่ต้องใช้คนค้ำประกัน</div>
+                    </div>
+                    
+                    <div class="text-[14px] space-y-2 mb-5 relative z-10">
+                        <div class="font-medium text-theme-textDark flex items-center gap-1.5"><i class="fa-solid fa-caret-right text-pink-300"></i> ทำไมต้องเลือกร้านเรา?:</div>
+                        <ul class="space-y-1.5 text-theme-textMuted ml-4 border-l-2 border-pink-100 pl-3">
+                            <li>เครื่องแท้ <span class="text-theme-textDark font-medium">มือ 1 แกะกล่องใหม่ 100%</span></li>
+                            <li>มีประกันศูนย์ <span class="text-theme-textDark font-medium">เข้า iCare/ศูนย์บริการ ได้ทั่วประเทศ</span></li>
+                            <li>ส่งด่วน/นัดรับ <span class="text-theme-textDark font-medium">มีแมสเซนเจอร์วิ่งส่งในพื้นที่</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-4 text-[13px] text-emerald-700 bg-emerald-50/80 border border-emerald-100 px-3 py-2.5 rounded-xl text-center shadow-sm relative z-10">
+                        <i class="fa-solid fa-shield-check mr-1"></i> จดทะเบียนการค้าถูกต้อง ปลอดภัย มั่นใจได้
+                    </div>
+                    
+                    <div class="mt-5 text-[12px] text-theme-textMuted leading-relaxed bg-theme-noteBg p-3.5 rounded-2xl text-center relative z-10 border border-gray-50/50">
+                        หมายเหตุ: ยอดดาวน์และค่างวดรายเดือน ขึ้นอยู่กับรุ่นความจุที่ลูกค้าเลือก ทักแชทเพื่อประเมินยอดได้เลยค่ะ ✨
+                    </div>
+                </div>
+            </section>
+
+            <!-- Terms & Process Section -->
+            <section class="px-5 mb-8">
+                <div class="glass-card p-6 rounded-[28px] shadow-soft border border-white/60">
+                    <h3 class="font-semibold text-lg mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-theme-textMuted bg-gray-100 p-2 rounded-full text-xs"></i> ขั้นตอนการอนุมัติรับเครื่อง
+                    </h3>
+                    <ul class="space-y-3 text-[14px] text-theme-textDark">
+                        <li class="flex items-start gap-2.5">
+                            <div class="mt-1 w-1.5 h-1.5 rounded-full bg-pink-300 flex-shrink-0"></div> 
+                            <span>เลือกรุ่น สี และความจุ ที่ต้องการทางแชท</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <div class="mt-1 w-1.5 h-1.5 rounded-full bg-pink-300 flex-shrink-0"></div> 
+                            <span>ส่งรูปบัตรประชาชนให้แอดมินเช็คประวัติ (ใช้เวลา 15-30 นาที)</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <div class="mt-1 w-1.5 h-1.5 rounded-full bg-pink-300 flex-shrink-0"></div> 
+                            <span>เมื่อผ่านการอนุมัติ สามารถโอนเงินดาวน์ และนัดรับเครื่องหรือจัดส่งฟรีได้ทันที!</span>
+                        </li>
+                    </ul>
+
+                    <div class="bg-gray-50/50 rounded-2xl p-4 mt-6 border border-gray-100">
+                        <h4 class="font-medium mb-3 text-theme-textDark flex items-center gap-1.5"><i class="fa-solid fa-piggy-bank text-purple-300"></i> สำหรับคนเลือก "ผ่อนออม"</h4>
+                        <ol class="space-y-3 text-[13.5px] text-theme-textDark list-decimal list-inside ml-1">
+                            <li class="leading-relaxed">เปิดบิลเริ่มต้นเพียง 100 บาท เปิดบิลปุ๊บ ล็อคราคาเครื่องปั๊บ</li>
+                            <li class="leading-relaxed">ไม่มีขั้นต่ำในการส่งยอดแต่ละเดือน มีเท่าไหร่ส่งเท่านั้น</li>
+                            <li class="leading-relaxed">ส่งยอดครบตามราคาเครื่อง รับของไปเลย ไม่บวกเพิ่ม</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rules Section -->
+            <section class="px-5 mb-8">
+                <div class="bg-[#FFF4F4]/90 backdrop-blur-sm p-6 rounded-[28px] border border-[#FFE8E8] shadow-sm relative overflow-hidden">
+                    <svg class="absolute -right-4 -top-4 w-20 h-20 text-red-50 opacity-50" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z"/></svg>
+                    
+                    <h3 class="font-semibold text-lg mb-3 text-red-800 text-center relative z-10 flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-triangle-exclamation text-red-400"></i> เงื่อนไขที่ต้องทราบ <i class="fa-solid fa-triangle-exclamation text-red-400"></i>
+                    </h3>
+                    <ul class="space-y-2 text-[14px] text-red-900 relative z-10">
+                        <li class="flex items-start gap-2 bg-white/40 p-2 rounded-xl">
+                            <i class="fa-solid fa-xmark text-red-400 mt-0.5"></i>
+                            <span>อายุต้อง 18 ปีบริบูรณ์ขึ้นไป (หากต่ำกว่า 18 ปี ต้องมีผู้ปกครองรับทราบและเซ็นยินยอม)</span>
+                        </li>
+                        <li class="flex items-start gap-2 bg-white/40 p-2 rounded-xl">
+                            <i class="fa-solid fa-xmark text-red-400 mt-0.5"></i>
+                            <span>กรณีผ่อนดาวน์รับเครื่อง ห้ามนำเครื่องไปจำนำ/ขายต่อ จนกว่าจะผ่อนครบกำหนด</span>
+                        </li>
+                        <li class="flex items-start gap-2 bg-white/40 p-2 rounded-xl">
+                            <i class="fa-solid fa-xmark text-red-400 mt-0.5"></i>
+                            <span>กรณีผ่อนออม หากต้องการยกเลิกกลางคัน จะมีการหักค่าปรับตามกฎของร้าน</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Popular Models Section -->
+            <section class="px-5 mb-10">
+                <div class="flex items-center justify-center gap-2 mb-6">
+                    <i class="fa-brands fa-apple text-theme-textDark opacity-80 text-2xl"></i>
+                    <h2 class="font-heading text-2xl font-bold text-theme-textDark">รุ่นฮิตขายดี</h2>
+                </div>
+                
+                <!-- Package 1: iPhone 15 Pro Max -->
+                <div class="glass-card p-6 rounded-[28px] shadow-soft mb-5 border border-white/60 hover:shadow-float transition-shadow duration-300">
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-bold text-lg text-theme-textDark">iPhone 15 Pro Max</h3>
+                        <i class="fa-solid fa-fire text-orange-400 text-sm"></i>
+                    </div>
+                    <p class="text-xs text-theme-textMuted mb-4">ไทเทเนียม ดีไซน์ใหม่ล่าสุด กล้องเทพซูมไกลสุดขีด</p>
+                    
+                    <ul class="space-y-2 text-[13px] text-theme-textDark mb-6 bg-gray-50/50 p-3 rounded-xl">
+                        <li class="flex items-start gap-2"><span class="text-theme-textMuted">-</span> ชิป A17 Pro เล่นเกมลื่นสุดๆ</li>
+                        <li class="flex items-start gap-2"><span class="text-theme-textMuted">-</span> เครื่องศูนย์ไทย ประกัน 1 ปีเต็ม</li>
+                        <li class="flex items-start gap-2"><span class="text-theme-textMuted">-</span> แถมฟรี! เคส ฟิล์มกระจก หัวชาร์จ</li>
+                    </ul>
+
+                    <div class="space-y-3 pt-4 border-t border-gray-100/80">
+                        <div class="flex justify-between items-center bg-white p-2.5 rounded-xl shadow-sm border border-gray-50">
+                            <div class="text-sm font-medium text-theme-textDark">ผ่อนออม เริ่มต้นเพียง</div>
+                            <div class="font-bold text-lg text-theme-textDark">500.- <span class="text-xs font-normal">/สัปดาห์</span></div>
+                        </div>
+                        <div class="flex justify-between items-center bg-pink-50 p-3 rounded-xl shadow-sm border border-pink-100 relative overflow-hidden">
+                            <div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-r from-transparent to-pink-100/50"></div>
+                            <div class="text-sm relative z-10">
+                                <div class="font-semibold text-theme-textDark">ดาวน์รับเครื่อง</div>
+                                <div class="text-[11px] text-pink-500 mt-0.5">#อนุมัติปุ๊บรับเครื่องเลย</div>
+                            </div>
+                            <div class="font-bold text-xl text-theme-textDark relative z-10">15,900.-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 2: iPad Air 5 -->
+                <div class="glass-card p-6 rounded-[28px] shadow-soft mb-5 border border-white/60 hover:shadow-float transition-shadow duration-300">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg text-theme-textDark">iPad Air 5 (M1)</h3>
+                        <i class="fa-solid fa-pen-nib text-blue-400 text-sm"></i>
+                    </div>
+                    <p class="text-[13px] text-theme-textDark mb-4 leading-relaxed opacity-90">
+                        แท็บเล็ตยอดฮิตสำหรับนักเรียน นักศึกษา สเปคแรงเทียบเท่ารุ่นโปร ในราคาสุดคุ้ม
+                    </p>
+                    
+                    <ul class="space-y-2 text-[13px] text-theme-textDark mb-6 bg-gray-50/50 p-3 rounded-xl">
+                        <li class="flex items-start gap-2"><span class="text-theme-textMuted">-</span> ชิป M1 ทรงพลังสุดๆ</li>
+                        <li class="flex items-start gap-2"><span class="text-theme-textMuted">-</span> รองรับ Apple Pencil รุ่นที่ 2</li>
+                        <li class="flex items-start gap-2"><span class="text-theme-textMuted">-</span> ฟรี! เซ็ตของแถม 5 รายการ (เคส, ฟิล์ม, สไตลัส)</li>
+                    </ul>
+
+                    <div class="space-y-3 pt-4 border-t border-gray-100/80 mb-5">
+                        <div class="flex justify-between items-center bg-white p-2.5 rounded-xl shadow-sm border border-gray-50">
+                            <div class="text-sm font-medium text-theme-textDark">ผ่อนออม เริ่มต้นเพียง</div>
+                            <div class="font-bold text-lg text-theme-textDark">300.- <span class="text-xs font-normal">/สัปดาห์</span></div>
+                        </div>
+                        <div class="flex justify-between items-center bg-blue-50 p-3 rounded-xl shadow-sm border border-blue-100 relative overflow-hidden">
+                            <div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-r from-transparent to-blue-100/50"></div>
+                            <div class="text-sm relative z-10">
+                                <div class="font-semibold text-theme-textDark">ดาวน์รับเครื่อง</div>
+                                <div class="text-[11px] text-blue-600 mt-0.5">#ใช้เรียนหรือทำงานก็คุ้ม</div>
+                            </div>
+                            <div class="font-bold text-xl text-theme-textDark relative z-10">6,900.-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 3: iPhone 13 -->
+                <div class="glass-card p-6 rounded-[28px] shadow-soft mb-5 border-2 border-purple-200/60 relative overflow-hidden bg-gradient-to-b from-white to-purple-50/30">
+                    <div class="absolute top-0 right-0 bg-gradient-to-r from-pink-400 to-purple-400 text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-wider z-10 shadow-sm">Best Seller</div>
+                    
+                    <!-- Decor Bottom Right -->
+                    <div class="absolute bottom-4 -right-4 w-20 h-20 opacity-[0.04] transform -rotate-12 pointer-events-none">
+                        <i class="fa-brands fa-apple text-[100px] text-[#2E2A36]"></i>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mb-2 pt-1 relative z-10">
+                        <h3 class="font-bold text-lg text-theme-textDark">iPhone 13</h3>
+                        <i class="fa-solid fa-crown text-purple-400 text-sm mr-1"></i>
+                    </div>
+                    <p class="text-[13px] text-theme-textDark mb-4 leading-relaxed opacity-90 relative z-10">
+                        รุ่นสุดคุ้ม สเปคยังแรง ถ่ายรูปสวย แบตอึด เหมาะสำหรับคนเริ่มใช้งาน
+                    </p>
+
+                    <div class="space-y-3 pt-4 border-t border-gray-100/80 mb-2 relative z-10">
+                        <div class="flex justify-between items-center bg-white p-2.5 rounded-xl shadow-sm border border-gray-50">
+                            <div class="text-sm font-medium text-theme-textDark">ผ่อนออม เริ่มต้นเพียง</div>
+                            <div class="font-bold text-lg text-theme-textDark">200.- <span class="text-xs font-normal">/สัปดาห์</span></div>
+                        </div>
+                        <div class="flex justify-between items-center bg-gradient-to-r from-purple-50 to-pink-50 p-3 rounded-xl shadow-sm border border-purple-200">
+                            <div class="text-sm">
+                                <div class="font-semibold text-theme-textDark">ดาวน์รับเครื่อง</div>
+                                <div class="text-[11px] text-purple-600 mt-0.5">#รุ่นฮิตตลอดกาล</div>
+                            </div>
+                            <div class="font-bold text-xl text-theme-textDark">5,500.-</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer Section -->
+        <footer class="mt-auto pt-6 pb-4 border-t border-gray-100/50 text-center relative z-10">
+            <div class="flex justify-center gap-4 mb-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-theme-textMuted hover:text-pink-500 hover:bg-pink-50 transition border border-gray-100">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-theme-textMuted hover:text-pink-500 hover:bg-pink-50 transition border border-gray-100">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-theme-textMuted hover:text-[#00B900] hover:bg-[#00B900]/10 transition border border-gray-100">
+                    <i class="fa-brands fa-line"></i>
+                </a>
+            </div>
+            <p class="text-[11px] text-theme-textMuted font-medium tracking-wide opacity-80">
+                &copy; 2026 JNS.CONNECT. ALL RIGHTS RESERVED.
+            </p>
+        </footer>
+    </main>
+
+    <!-- === CONTACT MODAL (Hidden by default) === -->
+    <div id="contactModal" class="fixed inset-0 z-50 flex items-end justify-center sm:items-center pointer-events-none">
+        
+        <!-- Backdrop Overlay -->
+        <div id="modalBackdrop" class="absolute inset-0 bg-black/30 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none" onclick="closeModal()"></div>
+        
+        <!-- Bottom Sheet / Modal Content -->
+        <div id="modalContent" class="relative w-full max-w-[480px] bg-white rounded-t-[32px] sm:rounded-[32px] p-6 pb-10 shadow-2xl transform translate-y-full transition-transform duration-300 pointer-events-none z-10">
+            
+            <!-- Handle indicator for mobile -->
+            <div class="w-12 h-1.5 bg-gray-200 rounded-full mx-auto mb-6 sm:hidden"></div>
+            
+            <!-- Close button (Top Right) -->
+            <button onclick="closeModal()" class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-gray-500 hover:bg-gray-100 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6 mt-2">
+                <div class="w-16 h-16 bg-gradient-to-tr from-pink-100 to-purple-100 rounded-2xl mx-auto flex items-center justify-center mb-3 shadow-sm transform -rotate-3">
+                    <i class="fa-regular fa-comment-dots text-2xl text-pink-500"></i>
+                </div>
+                <h3 class="font-heading text-xl font-bold text-theme-textDark">ช่องทางการติดต่อ</h3>
+                <p class="text-sm text-theme-textMuted mt-1">เลือกช่องทางที่คุณสะดวกได้เลยค่ะ</p>
+            </div>
+            
+            <div class="space-y-3">
+                <!-- Line Button -->
+                <a href="#" class="flex items-center p-4 bg-white border border-[#00B900]/20 rounded-2xl text-theme-textDark hover:bg-[#00B900]/5 transition-colors shadow-sm group">
+                    <div class="w-10 h-10 rounded-xl bg-[#00B900]/10 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-line text-[#00B900] text-xl"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="font-semibold text-[15px]">LINE Official</div>
+                        <div class="text-xs text-theme-textMuted mt-0.5">ตอบไวที่สุด แนะนำช่องทางนี้ค่ะ</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-sm"></i>
+                </a>
+
+                <!-- Instagram Button -->
+                <a href="#" class="flex items-center p-4 bg-white border border-pink-100 rounded-2xl text-theme-textDark hover:bg-pink-50/50 transition-colors shadow-sm group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-100 via-pink-100 to-purple-100 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-instagram text-pink-600 text-xl"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="font-semibold text-[15px]">Instagram</div>
+                        <div class="text-xs text-theme-textMuted mt-0.5">ดูรีวิวและอัปเดตสินค้าใหม่</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-sm"></i>
+                </a>
+
+                <!-- Facebook Button -->
+                <a href="#" class="flex items-center p-4 bg-white border border-blue-100 rounded-2xl text-theme-textDark hover:bg-blue-50/50 transition-colors shadow-sm group">
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-facebook-f text-blue-600 text-lg"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="font-semibold text-[15px]">Facebook Page</div>
+                        <div class="text-xs text-theme-textMuted mt-0.5">ติดตามข่าวสารและโปรโมชั่น</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-sm"></i>
+                </a>
+            </div>
+            
+            <button onclick="closeModal()" class="w-full mt-6 py-3.5 text-theme-textMuted font-medium hover:bg-gray-50 rounded-xl transition-colors text-[14px]">
+                ปิดหน้าต่าง
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Modal logic
+        const modal = document.getElementById('contactModal');
+        const backdrop = document.getElementById('modalBackdrop');
+        const content = document.getElementById('modalContent');
+
+        function openModal() {
+            // Enable pointer events
+            modal.classList.remove('pointer-events-none');
+            backdrop.classList.remove('pointer-events-none');
+            content.classList.remove('pointer-events-none');
+            
+            // Prevent body scroll
+            document.body.classList.add('modal-open');
+            
+            // Trigger animations (slight delay for render)
+            setTimeout(() => {
+                backdrop.classList.remove('opacity-0');
+                backdrop.classList.add('opacity-100');
+                
+                content.classList.remove('translate-y-full');
+                content.classList.add('translate-y-0');
+            }, 10);
+        }
+
+        function closeModal() {
+            // Revert animations
+            backdrop.classList.remove('opacity-100');
+            backdrop.classList.add('opacity-0');
+            
+            content.classList.remove('translate-y-0');
+            content.classList.add('translate-y-full');
+            
+            // Wait for transition to finish before hiding elements and restoring scroll
+            setTimeout(() => {
+                modal.classList.add('pointer-events-none');
+                backdrop.classList.add('pointer-events-none');
+                content.classList.add('pointer-events-none');
+                document.body.classList.remove('modal-open');
+            }, 300); // Matches the duration-300 class in Tailwind
+        }
+
+        // Close modal on Escape key press
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && !modal.classList.contains('pointer-events-none')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
